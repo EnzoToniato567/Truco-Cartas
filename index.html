@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Poker Style - Jokenpô Expandido</title>
+</head>
+<body>
+
+    <div id="poker-table">
+        
+        <!-- DEALER CENTRALIZADO NO TOPO -->
+        <div class="casino-dealer">
+            <div class="dealer-avatar">👱‍♀️</div>
+            <div class="dealer-button">DEALER</div>
+        </div>
+
+        <!-- LATERAL DIREITA: COMPUTADOR (CPU) -->
+        <div class="player-seat seat-right">
+            <div class="avatar-box">
+                <div class="avatar-image bot-avatar">🤖</div>
+                <div class="avatar-info">
+                    <span class="player-name">Computador</span>
+                    <span class="player-status" id="bot-status-chips">Cartas: 5</span>
+                </div>
+            </div>
+            <!-- Mão Oculta da CPU na Lateral -->
+            <div id="bot-cards" class="mini-hand-back"></div>
+        </div>
+
+        <!-- CENTRO DA MESA: POTE E ARENA DE DUELO -->
+        <div class="center-arena">
+            <div class="pot-container">
+                <span class="pot-label">POTE DE PONTOS</span>
+                <div class="pot-chips">
+                    <div class="poker-chip chip-yellow"><span></span><span></span><span></span></div>
+                    <div class="poker-chip chip-blue"><span></span><span></span><span></span><span></span></div>
+                </div>
+                <span class="round-points-display" id="round-score-text">Você: 0  |  Bot: 0</span>
+            </div>
+
+            <section class="gameplay">
+                <div class="card-slot">
+                    <span class="slot-title">Você</span>
+                    <div class="test"></div>
+                </div>
+                
+                <div class="fim">
+                    <p class="result"></p>
+                    <button class="playAgain" onclick="proximoTurno()">Próximo Turno</button>
+                </div>
+                
+                <div class="card-slot">
+                    <span class="slot-title">CPU</span>
+                    <div class="test1"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- BASE DA MESA: SEU AVATAR LADO A LADO COM SUAS CARTAS -->
+        <div class="bottom-hand-zone">
+            <!-- Seu personagem agora fica aqui, colado nas cartas -->
+            <div class="avatar-box user-avatar-bottom">
+                <div class="avatar-image user-avatar">👤</div>
+                <div class="avatar-info">
+                    <span class="player-name">Você</span>
+                    <span class="player-status">Jogador 1</span>
+                </div>
+            </div>
+
+            <main class="jogo" id="player-hand-area">
+                <div class="container container-papel"><button value="papel" class="opcao" onclick="jogar('papel')"></button></div>
+                <div class="container container-tesoura"><button value="tesoura" class="opcao" onclick="jogar('tesoura')"></button></div>
+                <div class="container container-pedra"><button value="pedra" class="opcao" onclick="jogar('pedra')"></button></div>
+                <div class="container container-spock"><button value="spock" class="opcao" onclick="jogar('spock')"></button></div>
+                <div class="container container-lagarto"><button value="lagarto" class="opcao" onclick="jogar('lagarto')"></button></div>
+            </main>
+        </div>
+
+        <!-- PLACAR GERAL FLUTUANTE -->
+        <div class="poker-hud-top">
+            <div class="hud-item"><span class="hud-label">MESA GERAL:</span> <strong id="global-score">Nós 0 x 0 Eles</strong></div>
+        </div>
+    </div>
+
+    <!-- BARRA DE AÇÕES INFERIOR FIXA -->
+    <div class="poker-action-bar">
+        <div class="action-status-text" id="game-status">Distribuidor embaralhando...</div>
+        <button class="btn-poker-action" onclick="mostrarRegras()">Ver Forças</button>
+    </div>
+
+    <!-- MODAL REGRAS -->
+    <div class="regras" id="janela-regras">
+        <div class="regras-titulo">
+            <h2>Regras do Confronto</h2>
+            <button onclick="fecharRegras()" class="close-btn">✕</button>
+        </div>
+        <div class="regras-corpo">
+            <p>Cada jogador inicia a rodada com 5 cartas. Quem somar mais pontos individuais ao fim das 5 jogadas fatura a rodada.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function mostrarRegras() { document.getElementById("janela-regras").style.display = "flex"; }
+        function fecharRegras() { document.getElementById("janela-regras").style.display = "none"; }
+    </script>
+</body>
+</html>
